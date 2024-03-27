@@ -9,7 +9,6 @@ spring:
 langchain4j:
   open-ai:
     chat-model:
-      #      api-key: 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
       api-key: demo
 
 #sourcePath: D:\micronaut\customer validation with database\Customer-Validation\src
