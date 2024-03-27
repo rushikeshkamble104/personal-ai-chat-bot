@@ -1,10 +1,10 @@
 server:
   port: 8096
   servlet:
-    context-path: /openai-migration
+    context-path: /openai-chatbot
 spring:
   application:
-    name: openai-migration-poc
+    name: openai-chat-bot-poc
 
 langchain4j:
   open-ai:
