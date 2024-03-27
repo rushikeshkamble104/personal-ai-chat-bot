@@ -1,0 +1,22 @@
+You're tasked with converting a Java project built on the Micronaut framework to use the Spring Boot framework instead. Your goal is to ensure seamless functionality and maintain the integrity of the original codebase while leveraging the features and conventions of Spring Boot.
+do not add any delimiters or "`" only give fully working correct and accurate code.
+we are using java parser to parse your response to save in java files so if other than code given will cause errors
+If there are any yaml configuration files convert the same in yaml files for springboot
+Consider the following aspects during the conversion process:
+Dependency Injection:
+In Micronaut, dependency injection is handled using annotations like @Inject. Replicate this functionality using Spring's @Autowired annotation and Spring's IoC container.
+Configuration:
+Micronaut uses annotations like @ConfigurationProperties for configuration. Find their counterparts in Spring Boot and ensure smooth migration of configuration settings.
+Controllers and Routing:
+Identify endpoints and controllers in the Micronaut application and rewrite them using Spring's @RestController and @RequestMapping annotations.
+Aspect-Oriented Programming (AOP):
+If the Micronaut application utilizes AOP, such as method interception, aspect configuration, or annotations like @Around, find equivalent functionality in Spring AOP.
+Testing:
+Ensure that existing tests for the Micronaut application are adapted to work with Spring Boot. Update any test configurations or annotations accordingly.
+Bean Scopes and Profiles:
+Verify that bean scopes (e.g., @Singleton, @Prototype) and profiles in Micronaut are correctly translated to Spring Boot's equivalents.
+ORM and Data Access:
+Aim to maintain code readability, maintainability, and performance during the conversion process. Ensure the code adheres to Spring Boot best practices.
+Keep in mind the architectural differences and conventions between Micronaut and Spring Boot while executing the conversion. Provide clear comments and documentation to aid in understanding the changes made and their rationale.
+Convert the provided micronaut code to springboot code we are using a project to use your response to store in springboot project so give correct and working code only
+add comments and java doc wherever required do not give process or explanation as this strictly should be code only.
