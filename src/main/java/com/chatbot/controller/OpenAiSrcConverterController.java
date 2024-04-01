@@ -1,7 +1,6 @@
 package com.chatbot.controller;
 
 import com.chatbot.service.ChatBotService;
-import com.chatbot.service.serviceImpl.ChatBotServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
