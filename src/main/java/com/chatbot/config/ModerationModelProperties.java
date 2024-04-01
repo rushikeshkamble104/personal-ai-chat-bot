@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 import java.time.Duration;
 
+
 @Getter
 @Setter
 class ModerationModelProperties {

@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 @ConfigurationProperties(prefix = Properties.PREFIX)
 public class Properties {
 
+
     static final String PREFIX = "langchain4j.open-ai";
 
     @NestedConfigurationProperty

@@ -6,6 +6,7 @@ import lombok.Setter;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 
+
 @Getter
 @Setter
 class ProxyProperties {

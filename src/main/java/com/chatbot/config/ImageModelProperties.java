@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import java.nio.file.Path;
 import java.time.Duration;
 
+
 /**
  * mage model properties
  *

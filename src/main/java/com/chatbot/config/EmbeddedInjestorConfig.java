@@ -10,6 +10,7 @@ import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 public class EmbeddedInjestorConfig {
 
