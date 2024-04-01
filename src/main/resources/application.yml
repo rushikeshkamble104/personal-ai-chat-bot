@@ -1,19 +1,10 @@
 server:
   port: 8096
   servlet:
-    context-path: /openai-chatbot
+    context-path: /openai-migration
 spring:
   application:
-    name: openai-chat-bot-poc
-
-langchain4j:
-  open-ai:
-    chat-model:
-      api-key: demo
-
-#sourcePath: D:\micronaut\customer validation with database\Customer-Validation\src
-sourcePath: src/main/resources/src
-destinationPath: /micronaut-To-Spring-boot-Test-Project
+    name: openai-chatbot
 
 
 
