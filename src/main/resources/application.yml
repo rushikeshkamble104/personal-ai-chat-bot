@@ -1,7 +1,7 @@
 server:
   port: 8096
   servlet:
-    context-path: /openai-chatbot
+    context-path: /openai-migration
 spring:
   application:
     name: openai-chatbot
