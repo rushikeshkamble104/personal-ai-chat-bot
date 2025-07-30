@@ -4,6 +4,7 @@ import com.chatbot.service.ChatBotService;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
+import dev.langchain4j.model.azure.AzureOpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.memory.chat.ChatMemoryStore;
@@ -46,8 +47,14 @@ public class ChatBotServiceImpl implements ChatBotService {
             .chatMemoryStore(new PersistentChatMemoryStore())
             .build();
 
+    OpenAiChatModel model = OpenAiChatModel.builder()
+//            .baseUrl("http://langchain4j.dev/demo/openai/v1")
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName("gpt-4o-mini")
+            .build();
+
     Assistant assistant = AiServices.builder(Assistant.class)
-            .chatLanguageModel(OpenAiChatModel.withApiKey(System.getenv("OPENAI_API_KEY")))
+            .chatLanguageModel(model)
             .chatMemory(chatMemory)
             .build();
 
