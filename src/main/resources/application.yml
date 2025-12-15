@@ -1,10 +1,122 @@
 server:
-  port: 8096
-  servlet:
-    context-path: /openai-migration
+  port: 8080
+  error:
+    include-message: never
+    include-binding-errors: never
+
 spring:
   application:
-    name: openai-chatbot
+    name: enterprise-ai-chatbot
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  security:
+    user:
+      name: ${SECURITY_USER_NAME:admin}
+      password: ${SECURITY_USER_PASSWORD:changeme}
+      roles: ADMIN
+
+# LangChain4J Configuration
+langchain4j:
+  open-ai:
+    chat-model:
+      api-key: ${OPENAI_API_KEY:sk-test-key}
+      model-name: ${OPENAI_MODEL:gpt-4o-mini}
+      temperature: ${OPENAI_TEMPERATURE:0.7}
+      max-tokens: ${OPENAI_MAX_TOKENS:1000}
+      timeout: ${OPENAI_TIMEOUT:PT60S}
+      max-retries: ${OPENAI_MAX_RETRIES:3}
+      log-requests: ${OPENAI_LOG_REQUESTS:false}
+      log-responses: ${OPENAI_LOG_RESPONSES:false}
+
+# Management & Monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  tracing:
+    sampling:
+      probability: 0.1
+
+# Logging Configuration
+logging:
+  level:
+    com.enterprise.chatbot: ${LOG_LEVEL:INFO}
+    dev.langchain4j: ${LANGCHAIN4J_LOG_LEVEL:WARN}
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/chatbot.log
+
+# OpenAPI/Swagger Configuration
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    tryItOutEnabled: true
+    filter: true
+    disable-swagger-default-url: true
+  use-management-port: false
+
+# Application Configuration
+app:
+  chat:
+    memory:
+      max-messages: ${CHAT_MEMORY_MAX_MESSAGES:50}
+      store-path: ${CHAT_MEMORY_STORE_PATH:./data/chat-memory.db}
+    rate-limit:
+      requests-per-minute: ${RATE_LIMIT_RPM:60}
+    security:
+      api-key-header: X-API-Key
+      allowed-origins: ${ALLOWED_ORIGINS:http://localhost:3000,http://localhost:8080}
+  portfolio:
+    api:
+      base-url: ${PORTFOLIO_API_BASE_URL:http://localhost:8081}
+      key: ${PORTFOLIO_API_KEY:}
+      timeout: ${PORTFOLIO_API_TIMEOUT:30s}
+      retry-attempts: ${PORTFOLIO_API_RETRY:3}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  security:
+    user:
+      password: dev123
+logging:
+  level:
+    com.enterprise.chatbot: DEBUG
+    dev.langchain4j: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  security:
+    require-ssl: true
+logging:
+  level:
+    root: WARN
+    com.enterprise.chatbot: INFO
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
 
 
 
